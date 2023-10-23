@@ -1,0 +1,24 @@
+[33mcommit 8a0cbb4f660445348966eabb75923bacc3b13ea9[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31mgithub/main[m[33m)[m
+Merge: 7939c83 060b574
+Author: PitonovArtem <121400639+PitonovArtem@users.noreply.github.com>
+Date:   Mon Oct 23 19:55:18 2023 +0300
+
+    Merge remote-tracking branch 'github/main'
+
+[33mcommit 7939c83474a50954c52a93890d46fd9f177a6480[m
+Author: PitonovArtem <121400639+PitonovArtem@users.noreply.github.com>
+Date:   Mon Oct 23 19:54:54 2023 +0300
+
+    Final style
+
+[33mcommit 060b574ec7bde2601f84d4efc59a2ada94fe8471[m
+Author: Artemonin <117837803+Artemonin@users.noreply.github.com>
+Date:   Mon Oct 23 19:52:29 2023 +0300
+
+    Create README.md
+
+[33mcommit 29a8dde9d313b27f1d336c255a2f56af9d7f07e0[m
+Author: PitonovArtem <121400639+PitonovArtem@users.noreply.github.com>
+Date:   Mon Oct 23 16:07:17 2023 +0300
+
+    first

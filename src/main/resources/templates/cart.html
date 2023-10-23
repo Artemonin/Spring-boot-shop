@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/newtest.css}" />
+    <title>Shopping cart</title>
+</head>
+<body>
+<div th:replace="~{navbar :: header}"></div>
+<div class="container mt-5">
+    <h1 class="text-center">Shopping cart</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Name of product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody th:if="${not #lists.isEmpty(products)}">
+        <tr th:each="product : ${products}">
+            <td th:text="${product.getKey().getName()}"></td>
+            <td th:text="${product.getKey().getPrice()} + '$'"></td>
+            <td th:text="${product.getValue()}"></td>
+            <td th:text="${product.getKey().getPrice() * product.getValue()} + '$'"></td>
+            <td><a th:href="@{/cart/remove/{id}(id=${product.getKey().getId()})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:if="${#lists.isEmpty(products)}" class="text-center">Your shopping cart is empty</p>
+    <p class="text-center">Total price: <strong th:text="${totalPrice} + '$'"></strong></p>
+    <div class="text-center">
+        <a th:href="@{/cart/clear}" class="btn btn-danger">Clear shopping cart</a>
+    </div>
+</div>
+<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

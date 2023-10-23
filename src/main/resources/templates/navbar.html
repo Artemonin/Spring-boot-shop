@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css/}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.4.2/web-fonts-with-css/css/fontawesome-all.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/newtest.css}" />
+  <title>Application</title>
+</head>
+
+<body>
+<div th:fragment="header">
+  <nav class="navbar navbar-expand-lg navbar-dark align-items-center">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand" th:href="@{/home}">SHOP</a>
+      <form class="form-inline d-flex" action="/search" method="get">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="keyword">
+        <div class="ml-2">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </div>
+      </form>
+      <ul class="navbar-nav ml-auto align-items-center">
+        <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+          <span class="nav-link">Balance: <span th:text="${user.balance} +'$'"></span></span>
+        </li>
+        <li class="nav-item" sec:authorize = "hasRole('ROLE_ADMIN')">
+          <a class="nav-link" th:href="@{/admin/manage-users}" style="color: #91a8ff;" >Admin panel</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <a class="nav-link" th:text="'Logged as ' + ${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}"  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}" style="color: #91a8ff;" ><span sec:authentication="name"></span></a>
+          <a class="nav-link" th:text="'Logged as ' + ${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}"  sec:authorize="hasRole('ROLE_USER')" th:href="@{/user}" style="color: #91a8ff;" ><span sec:authentication="name"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/register}" sec:authorize="!isAuthenticated()">Registration</a>
+        </li>
+        <li class="nav-item" sec:authorize="!isAuthenticated()">
+          <a class="nav-link" th:href="@{/login}">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/cart}"><img id="cart" th:src="@{/images/cart.png}"></a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <form th:action="@{/logout}" method="post">
+            <button class="nav-link" type="submit">Log out</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+</body>
+</html>

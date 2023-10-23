@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Product information</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css/}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.4.2/web-fonts-with-css/css/fontawesome-all.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/css/newtest.css}" />
+</head>
+<body>
+<div th:replace="~{navbar :: header}"></div>
+
+<div class="container mt-4">
+  <h1 class="text-center">Product information</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-fluid" th:src="${product.imageUrl}" th:alt="${product.name}">
+    </div>
+    <div class="col-md-6">
+      <div class="product-details">
+        <h2 th:text="${product.name}"></h2>
+        <p class="lead" th:text="${product.description}"></p>
+        <p>Цена: <span th:text="${product.price} + '$'"></span> </p>
+        <a th:href="${'/cart/add/' + product.getId()}">Add item to shopping cart</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div th:replace="~{footer :: footer}"></div>
+</body>
+</html>

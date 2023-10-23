@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css/}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/newtest.css}" />
+    <title>Admin panel</title>
+</head>
+<body>
+
+<div th:replace="~{navbar :: header}"></div>
+
+<div class="container mt-5">
+    <h1>User management</h1>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.email}"></td>
+                <td th:text="${user.roles}"></td>
+                <td>
+                    <form th:action="@{'/admin/assign-role?userId=' + ${user.id}}" method="post">
+                        <select name="role">
+                            <option th:each="role : ${roles}" th:value="${role}" th:text="${role.name()}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-success btn-sm">Assign role</button>
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+
+<div th:replace="~{footer :: footer}"></div>
+
+</body>
+</html>
